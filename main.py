@@ -13,22 +13,22 @@ class Game:
 		while not done:
 			self.takeTurn()
 			if self.gameOver():
-				value = prompt("Would you like to play again? y/n\n")
+				value = input("Would you like to play again? y/n\n")
 				while value != "y" and value != "n":
 					os.system('cls')
-					value = prompt("Would you like to play again? y/n\n")
+					value = input("Would you like to play again? y/n\n")
 				if value == 'n':
 					done = True
 				else:
 					self.reset()
 			else:
-				print(f"Player1: {self.p1}, Player2: {self.p2}. {self.roundsToWin} points to win")
+				print(f"Player1: {self.p1}, Player2: {self.p2}. {self.rtw} points to win")
+				input("Press enter to continue\n")
 	def gameOver(self):
-		os.system('cls')
-		if self.p1 == self.roundsToWin:
+		if self.p1 == self.rtw:
 			print("Player 1 is the winner!\n")
 			return True
-		elif self.p2 == self.roundsToWin:
+		elif self.p2 == self.rtw:
 			print("Player 2 is the winner!\n")
 			return True
 		return False
@@ -36,25 +36,27 @@ class Game:
 		os.system('cls')
 		self.welcome()
 		self.vsNPC = self.selectMode()
-		self.roundsToWin = self.selectRounds()
+		self.rtw = self.roundsToWin()
 		self.p1 = 0
 		self.p2 = 0
 		
 	def takeTurn(self):
 		os.system('cls')
-		p1_action = self.player1.takeTurn()
+		p1_action = self.player1.takeAction()
 		os.system('cls')
-		p2_action = self.player2.takeTurn()
+		p2_action = self.player2.takeAction()
 		os.system('cls')
-		print(f"player{num} chose {p1_action}, player{num} chose {p2_action}.")
-		result = gesture.compare_value(p1_action, p2_action)
+		print(f"player1 chose {p1_action}, player2 chose {p2_action}.")
+		result = self.gesture.compare_value(p1_action, p2_action)
 		print(result[1])
 		if result[0] == -1:
 			self.p1 += 1
+			print("Player 1 wins this round")
 		elif result[0] == 1:
 			self.p2 += 1
+			print("Player 2 wins this round")
 		
-	def roundsToWin():
+	def roundsToWin(self):
 		os.system('cls')
 		value = input("Please enter a number 2-9 for number of rounds to win\n")
 		valid = set(list("23456789"))

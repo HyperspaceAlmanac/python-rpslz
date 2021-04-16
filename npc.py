@@ -3,7 +3,7 @@ from player import Player
 
 class NPC(Player):
 	def __init__(self, num):
-		super.__init__('NPC', num)
+		super().__init__(num)
 	
-	def takeAction():
-		return random.choice(moves)
+	def takeAction(self):
+		return random.choice(self.moves)
