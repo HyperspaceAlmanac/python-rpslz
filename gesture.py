@@ -5,14 +5,14 @@ class Gesture:
 		if not Gesture.results:
 			self.populate();
 		
-	def compare_value(self, other):
-		result = Gesture.results[self.value][other]
+	def compare_value(self, left, right):
+		result = Gesture.results[left][right]
 		if result[0] == 0:
 			return (0, "It was a draw")
 		elif result[0] == 1:
 			return result
 		else:
-			return (-1, Gesture.results[other][self.value][1])
+			return (-1, Gesture.results[right][left][1])
 	
 	def populate(self):
 		values = Gesture.results
