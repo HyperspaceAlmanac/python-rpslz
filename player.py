@@ -1,5 +1,5 @@
 class Player:
-	def __init__(num):
+	def __init__(self, num):
 		self.player_num = num
 		self.moves = ["rock", "paper", "scissors", "lizard", "spock"]
 	

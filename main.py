@@ -9,13 +9,14 @@ class Game:
 		self.run()
 	def run(self):
 		done = False
+		self.reset()
 		while not done:
 			self.takeTurn()
 			if self.gameOver():
-				value = prompt("Would you like to play again? y/n")
+				value = prompt("Would you like to play again? y/n\n")
 				while value != "y" and value != "n":
 					os.system('cls')
-					value = prompt("Would you like to play again? y/n")
+					value = prompt("Would you like to play again? y/n\n")
 				if value == 'n':
 					done = True
 				else:
@@ -25,10 +26,10 @@ class Game:
 	def gameOver(self):
 		os.system('cls')
 		if self.p1 == self.roundsToWin:
-			print("Player 1 is the winner!")
+			print("Player 1 is the winner!\n")
 			return True
 		elif self.p2 == self.roundsToWin:
-			print("Player 2 is the winner!")
+			print("Player 2 is the winner!\n")
 			return True
 		return False
 	def reset(self):
@@ -38,6 +39,7 @@ class Game:
 		self.roundsToWin = self.selectRounds()
 		self.p1 = 0
 		self.p2 = 0
+		
 	def takeTurn(self):
 		os.system('cls')
 		p1_action = self.player1.takeTurn()
@@ -54,18 +56,18 @@ class Game:
 		
 	def roundsToWin():
 		os.system('cls')
-		value = input("Please enter a number 2-9 for number of rounds to win")
+		value = input("Please enter a number 2-9 for number of rounds to win\n")
 		valid = set(list("23456789"))
 		while (value not in valid):
 			os.system('cls')
-			value = input("Invalid input: Please enter a number 2-9 for number of rounds to win")
+			value = input("Invalid input: Please enter a number 2-9 for number of rounds to win\n")
 		return int(value)
 		
 	def selectMode(self):
-		value = input("Please enter 1 for vs npc, or 2 for player vs player")
+		value = input("Please enter 1 for vs npc, or 2 for player vs player\n")
 		while value != "1" and value != "2":
-		os.system('cls')
-			value = input("Invalid input. Please enter 1 for vs npc, or 2 for player vs player")
+			os.system('cls')
+			value = input("Invalid input. Please enter 1 for vs npc, or 2 for player vs player\n")
 		self.vsNPC = value == "1"
 		self.player1 = HumanPlayer(1)
 		if self.vsNPC:
