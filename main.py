@@ -49,10 +49,10 @@ class Game:
 		print(f"player1 chose {p1_action}, player2 chose {p2_action}.")
 		result = self.gesture.compare_value(p1_action, p2_action)
 		print(result[1])
-		if result[0] == -1:
+		if result[0] == 1:
 			self.p1 += 1
 			print("Player 1 wins this round")
-		elif result[0] == 1:
+		elif result[0] == -1:
 			self.p2 += 1
 			print("Player 2 wins this round")
 		
